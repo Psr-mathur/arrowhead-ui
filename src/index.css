@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	h1 {
+		@apply text-4xl;
+	}
+	h2 {
+		@apply text-3xl;
+	}
+	h3 {
+		@apply text-2xl;
+	}
+}
+@layer components {
+	.lg {
+		background: linear-gradient(
+			275.79deg,
+			#06ffa8 5.39%,
+			#ffeb3c 31.4%,
+			#febb3f 70.92%,
+			#c95afd 99.68%
+		);
+	}
+	.text-fill-transparent {
+		-webkit-text-fill-color: transparent;
+		text-fill-color: transparent;
+	}
+	.gradient-border {
+		background: linear-gradient(275.79deg, black);
+		padding: 0px;
+		transition: all 200ms ease;
+	}
+	.gradient-border:hover {
+		background: linear-gradient(
+			275.79deg,
+			#06ffa8 5.39%,
+			#ffeb3c 31.4%,
+			#febb3f 70.92%,
+			#c95afd 99.68%
+		);
+		padding: 4px;
+	}
+	.bg-image {
+		background: url("./assets/gradient-logo.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	.clip-path {
+		clip-path: polygon(50% 0, 100% 100%, 50% 70%, 0% 100%);
+	}
+	.bg-gradient-tricolor {
+		background: linear-gradient(
+			to bottom,
+			#ff9933,
+			white,
+			rgb(86, 197, 86)
+		);
+	}
+}
