@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/Arrowhead_cover_image-removebg-preview-768x207.png";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { useState } from "react";
 
 const Navbar = () => {
+	const mdClass = "hidden sm:flex items-center gap-14 font-semibold ";
+	const smClass =
+		" absolute top-[100%] z-10 w-full flex items-center justify-between py-2 font-semibold bg-[rgba(0,0,0,0.5)] ";
+	const [openmenu, setOpenMenu] = useState(false);
+	const toggleOpenMenu = () => setOpenMenu((p) => !p);
 	return (
 		<div className="sticky top-0 flex items-center justify-between pt-2 z-50 bg-black">
-			<div className=" w-72 pointer-events-none">
+			<div className=" w-48 sm:w-72 pointer-events-none">
 				<img
 					src={logo}
 					alt="Logo"
@@ -12,8 +19,8 @@ const Navbar = () => {
 					draggable={false}
 				/>
 			</div>
-			<div className=" flex items-center gap-14 font-semibold ">
-				<div className=" flex gap-4 font-bold">
+			<div className={openmenu ? smClass : mdClass}>
+				<div className="flex gap-4 font-bold">
 					<Link
 						to={"/"}
 						className=" py-2 px-4 border-b-[3px] border-transparent focus:border-white active:border-white transition-all"
@@ -30,6 +37,13 @@ const Navbar = () => {
 				<button className=" bg-white text-black py-2 px-3 rounded hover:scale-105 active:scale-95 transition-all">
 					We're hiring!
 				</button>
+			</div>
+			<div onClick={toggleOpenMenu} className="py-2 px-4 sm:hidden">
+				{!openmenu ? (
+					<AiOutlineMenu className=" text-2xl" />
+				) : (
+					<AiOutlineClose className=" text-2xl text-red-300" />
+				)}
 			</div>
 		</div>
 	);
