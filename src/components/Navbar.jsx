@@ -2,6 +2,32 @@ import { Link } from "react-router-dom";
 import logo from "../assets/Arrowhead_cover_image-removebg-preview-768x207.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FromTopAnimationSpan } from "./AnimationVar";
+
+const RightPartChildrens = () => {
+	return (
+		<>
+			<div className="flex gap-4 font-bold">
+				<Link
+					to={"/"}
+					className=" py-2 px-4 border-b-[3px] border-transparent focus:border-white active:border-white transition-all"
+				>
+					Home
+				</Link>
+				<Link
+					to={"#"}
+					className=" py-2 px-4 border-b-[3px] border-transparent focus:border-white active:border-white transition-all"
+				>
+					Blog
+				</Link>
+			</div>
+			<button className=" bg-white text-black py-2 px-3 rounded hover:scale-105 active:scale-95 transition-all">
+				We're hiring!
+			</button>
+		</>
+	);
+};
 
 const Navbar = () => {
 	const mdClass = "hidden sm:flex items-center gap-14 font-semibold ";
@@ -19,24 +45,8 @@ const Navbar = () => {
 					draggable={false}
 				/>
 			</div>
-			<div className={openmenu ? smClass : mdClass}>
-				<div className="flex gap-4 font-bold">
-					<Link
-						to={"/"}
-						className=" py-2 px-4 border-b-[3px] border-transparent focus:border-white active:border-white transition-all"
-					>
-						Home
-					</Link>
-					<Link
-						to={"#"}
-						className=" py-2 px-4 border-b-[3px] border-transparent focus:border-white active:border-white transition-all"
-					>
-						Blog
-					</Link>
-				</div>
-				<button className=" bg-white text-black py-2 px-3 rounded hover:scale-105 active:scale-95 transition-all">
-					We're hiring!
-				</button>
+			<div className={mdClass}>
+				<RightPartChildrens />
 			</div>
 			<div onClick={toggleOpenMenu} className="py-2 px-4 sm:hidden">
 				{!openmenu ? (
@@ -45,6 +55,13 @@ const Navbar = () => {
 					<AiOutlineClose className=" text-2xl text-red-300" />
 				)}
 			</div>
+			<AnimatePresence>
+				{openmenu && (
+					<FromTopAnimationSpan className={smClass}>
+						<RightPartChildrens />
+					</FromTopAnimationSpan>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

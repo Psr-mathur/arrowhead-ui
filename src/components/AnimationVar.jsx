@@ -148,39 +148,52 @@ export const ParaTextAnima = ({ children, className }) => {
 
 const F_TOP = {
 	hidden: {
-		// x: "-100%",
+		top: "-100%",
+		scale: 0.4,
 		opacity: 0,
 	},
 	visible: {
-		// x: "0",
+		top: "100%",
+		scale: 1,
 		opacity: 1,
 		transition: {
-			duration: 3,
+			duration: 0.5,
+			type: "spring",
 		},
 	},
 };
 export const FromTopAnimationSpan = ({ children, className = "" }) => {
 	return (
-		<AnimatePresence
-			initial={false}
-			mode="wait"
-			onExitComplete={() => null}
+		<motion.div
+			variants={F_TOP}
+			initial="hidden"
+			animate="visible"
+			className={className}
+			exit="hidden"
 		>
-			<motion.span
-				variants={F_TOP}
-				initial="hidden"
-				animate="visible"
-				className={className}
-				exit={{
-					x: "100%",
-					opacity: 0,
-				}}
-				transition={{
-					duration: 2,
-				}}
+			{children}
+		</motion.div>
+	);
+};
+
+const ImageWithHoverText = () => {
+	return (
+		<div className="relative">
+			<img
+				src="your-image-source.jpg"
+				alt="Your Image"
+				className="w-full"
+				style={{ height: "auto" }}
+			/>
+			<motion.div
+				className="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-75 text-white"
+				initial={{ y: "100%" }}
+				whileHover={{ y: 0 }}
+				transition={{ type: "spring", stiffness: 100 }}
 			>
-				{children}
-			</motion.span>
-		</AnimatePresence>
+				<h2 className="text-xl font-semibold">Heading 1</h2>
+				<p className="text-sm">Hover to reveal more</p>
+			</motion.div>
+		</div>
 	);
 };
